@@ -14,7 +14,7 @@ def cb_reflectivity(reflectivity):
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
-    al = Line(UID, ipcon) # Create device object
+    line = Line(UID, ipcon) # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
@@ -22,10 +22,10 @@ if __name__ == "__main__":
     # Set Period for reflectivity callback to 1s (1000ms)
     # Note: The reflectivity callback is only called every second if the 
     #       reflectivity has changed since the last call!
-    al.set_reflectivity_callback_period(1000)
+    line.set_reflectivity_callback_period(1000)
 
     # Register reflectivity callback to function cb_reflectivity
-    al.register_callback(al.CALLBACK_REFLECTIVITY, cb_reflectivity)
+    line.register_callback(line.CALLBACK_REFLECTIVITY, cb_reflectivity)
 
     raw_input('Press key to exit\n') # Use input() in Python 3
     ipcon.disconnect()
