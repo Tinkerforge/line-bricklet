@@ -17,7 +17,7 @@ $ipcon->connect($host, $port); // Connect to brickd
 // Don't use device before ipcon is connected
 
 // Get current reflectivity
-$reflectivity = $line->getReflectivity() / 10.0;
+$reflectivity = $line->getReflectivity();
 
 echo "Reflectivity: $reflectivity\n";
 
