@@ -9,13 +9,13 @@ class Example
 	static void Main() 
 	{
 		IPConnection ipcon = new IPConnection(); // Create IP connection
-		BrickletLine time = new BrickletLine(UID, ipcon); // Create device object
+		BrickletLine lime = new BrickletLine(UID, ipcon); // Create device object
 
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
 		// Get current reflectivity
-		int reflectivity = time.GetReflectivity();
+		int reflectivity = lime.GetReflectivity();
 
 		System.Console.WriteLine("Reflectivity: " + reflectivity);
 
