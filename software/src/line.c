@@ -66,6 +66,8 @@ void invocation(const ComType com, const uint8_t *data) {
 }
 
 void constructor(void) {
+	_Static_assert(sizeof(BrickContext) <= BRICKLET_CONTEXT_MAX_SIZE, "BrickContext too big");
+
 	PIN_REFLECTIVITY.type = PIO_INPUT;
 	PIN_REFLECTIVITY.attribute = PIO_DEFAULT;
     BA->PIO_Configure(&PIN_REFLECTIVITY, 1);
