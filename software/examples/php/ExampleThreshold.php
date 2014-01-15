@@ -6,9 +6,9 @@ require_once('Tinkerforge/BrickletLine.php');
 use Tinkerforge\IPConnection;
 use Tinkerforge\BrickletLine;
 
-$host = 'localhost';
-$port = 4223;
-$uid = 'XYZ'; // Change to your UID
+const HOST = 'localhost';
+const PORT = 4223;
+const UID = 'XYZ'; // Change to your UID
 
 // Callback for reflectivity greater than 2000
 function cb_reached($reflectivity)
@@ -17,9 +17,9 @@ function cb_reached($reflectivity)
 }
 
 $ipcon = new IPConnection(); // Create IP connection
-$line = new BrickletLine($uid, $ipcon); // Create device object
+$line = new BrickletLine(UID, $ipcon); // Create device object
 
-$ipcon->connect($host, $port); // Connect to brickd
+$ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
 // Get threshold callbacks with a debounce time of 1 second (1000ms)
