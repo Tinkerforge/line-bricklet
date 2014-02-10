@@ -7,8 +7,8 @@ use constant HOST => 'localhost';
 use constant PORT => 4223;
 use constant UID => '7xwQ9g'; # Change to your UID
 
-my $ipcon = IPConnection->new(); # Create IP connection
-my $line = BrickletLine->new(&UID, $ipcon); # Create device object
+my $ipcon = Tinkerforge::IPConnection->new(); # Create IP connection
+my $line = Tinkerforge::BrickletLine->new(&UID, $ipcon); # Create device object
 
 # Callback for reflectivity greater than 2000 Lux
 sub cb_reached
