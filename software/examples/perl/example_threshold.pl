@@ -14,8 +14,10 @@ my $line = Tinkerforge::BrickletLine->new(&UID, $ipcon); # Create device object
 sub cb_reached
 {
     my ($reflectivity) = @_;
-    print "\nReflectivity: $reflectivity\n";
+
+    print "Reflectivity: $reflectivity\n";
 }
+
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
@@ -28,7 +30,7 @@ $line->register_callback($line->CALLBACK_REFLECTIVITY_REACHED, 'cb_reached');
 # Configure threshold for "greater than 2000 Lux"
 $line->set_reflectivity_callback_threshold('>', 2000, 0);
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 

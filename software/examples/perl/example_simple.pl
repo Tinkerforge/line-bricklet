@@ -15,10 +15,9 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 
 # Get current reflectivity
 my $reflectivity = $line->get_reflectivity();
+print "Reflectivity: $reflectivity\n";
 
-print "\nReflectivity: $reflectivity\n";
-
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 

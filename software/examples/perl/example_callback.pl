@@ -14,8 +14,10 @@ my $line = Tinkerforge::BrickletLine->new(&UID, $ipcon); # Create device object
 sub cb_reflectivity
 {
     my ($reflectivity) = @_;
-    print "\nReflectivity: $reflectivity\n";
+
+    print "Reflectivity: $reflectivity\n";
 }
+
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
@@ -27,7 +29,7 @@ $line->set_reflectivity_callback_period(1000);
 # Register reflectivity callback to function cb_reflectivity
 $line->register_callback($line->CALLBACK_REFLECTIVITY, 'cb_reflectivity');
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 
