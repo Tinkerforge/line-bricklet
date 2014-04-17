@@ -17,13 +17,13 @@ function octave_example_callback
     line.setReflectivityCallbackPeriod(1000);
 
     % Register reflectivity callback to function cb_reflectivity
-    line.addReflectivityListener("cb_reflectivity");
+    line.addReflectivityCallback(@cb_reflectivity);
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end
 
 % Callback function for humidity callback (parameter has unit %RH/10)
-function cb_reflectivity(reflectivity_value)
-    fprintf("Reflectivity: %g\n", reflectivity_value);
+function cb_reflectivity(e)
+    fprintf("Reflectivity: %g\n", e.reflectivity);
 end

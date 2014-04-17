@@ -13,9 +13,8 @@ function octave_example_simple
 
     % Get current reflectivity
     reflectivity = line.getReflectivity();
-
     fprintf("Reflectivity: %g\n", reflectivity);
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end

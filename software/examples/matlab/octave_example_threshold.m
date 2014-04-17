@@ -15,16 +15,16 @@ function octave_example_threshold
     line.setDebouncePeriod(1000);
 
     % Register threshold reached callback to function cb_reached
-    line.addReflectivityReachedListener("cb_reached");
+    line.addReflectivityReachedCallback(@cb_reached);
     
-    % Configure threshold for "greater than 2000 Lux"
+    % Configure threshold for "greater than 2000"
     line.setReflectivityCallbackThreshold(">", 2000, 0);
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end
 
-% Callback for reflectivity greater than 2000 Lux
-function cb_reached(reflectivity_value)
-    fprintf("Reflectivity: %g\n", reflectivity_value);
+% Callback for reflectivity greater than 2000
+function cb_reached(e)
+    fprintf("Reflectivity: %g\n", e.reflectivity);
 end
