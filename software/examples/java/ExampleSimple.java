@@ -20,7 +20,7 @@ public class ExampleSimple {
 
 		System.out.println("Reflectivity: " + reflectivity);
 
-		System.console().readLine("Press key to exit\n");
+		System.out.println("Press key to exit"); System.in.read();
 		ipcon.disconnect();
 	}
 }
