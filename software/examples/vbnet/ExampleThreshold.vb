@@ -27,7 +27,7 @@ Module ExampleThreshold
         line.SetReflectivityCallbackThreshold(">"C, 2000, 0)
 
         System.Console.WriteLine("Press key to exit")
-        System.Console.ReadKey()
+        System.Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module
