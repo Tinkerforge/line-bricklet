@@ -43,16 +43,15 @@
                     function(connectReason) {
                         // Get threshold callbacks with a debounce time of 1 seconds (1000ms)
                         line.setDebouncePeriod(1000);
-                        // Configure threshold for "greater than 2000 Lux"
+                        // Configure threshold for "greater than 2000"
                         line.setReflectivityCallbackThreshold('>', 2000, 0);
                     }
                 );
                 // Register threshold reached callback
                 line.on(Tinkerforge.BrickletLine.CALLBACK_REFLECTIVITY_REACHED,
-                    // Callback for reflectivity greater than 2000 Lux
+                    // Callback for reflectivity greater than 2000
                     function(reflectivity) {
-                        textArea.value += 'Reflectivity: '+reflectivity;
-                        textArea.value += '\n';
+                        textArea.value += 'Reflectivity: '+reflectivity+'\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );

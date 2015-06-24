@@ -51,8 +51,7 @@
                 line.on(Tinkerforge.BrickletLine.CALLBACK_REFLECTIVITY,
                     // Callback function for reflectivity
                     function(reflectivity) {
-                        textArea.value += 'Reflectivity: '+reflectivity;
-                        textArea.value += '\n';
+                        textArea.value += 'Reflectivity: '+reflectivity+'\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );
