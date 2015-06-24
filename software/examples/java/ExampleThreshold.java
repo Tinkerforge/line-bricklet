@@ -19,7 +19,7 @@ public class ExampleThreshold {
 		line.setDebouncePeriod(1000);
 
 		// Configure threshold for "greater than 2000"
-		line.setReflectivityCallbackThreshold('>', (short)(2000), (short)0);
+		line.setReflectivityCallbackThreshold('>', (short)2000, (short)0);
 
 		// Add and implement reflectivity reached listener 
 		// (called if reflectivity is greater than 2000)
