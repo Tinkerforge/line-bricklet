@@ -7,8 +7,8 @@
 #define PORT 4223
 #define UID "XYZ" // Change to your UID
 
-// Callback for reflectivity greater than 2000
-void cb_reached(uint16_t reflectivity, void *user_data) {
+// Callback function for reflectivity greater than 2000
+void cb_reflectivity_reached(uint16_t reflectivity, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
 	printf("Reflectivity: %d\n", reflectivity);
@@ -20,8 +20,8 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	Line line;
-	line_create(&line, UID, &ipcon); 
+	Line l;
+	line_create(&l, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -30,17 +30,17 @@ int main() {
 	}
 	// Don't use device before ipcon is connected
 
-	// Get threshold callbacks with a debounce time of 1 seconds (1000ms)
-	line_set_debounce_period(&line, 1000);
+	// Get threshold callbacks with a debounce time of 1 second (1000ms)
+	line_set_debounce_period(&l, 1000);
 
-	// Register threshold reached callback to function cb_reached
-	line_register_callback(&line,
+	// Register threshold reached callback to function cb_reflectivity_reached
+	line_register_callback(&l,
 	                       LINE_CALLBACK_REFLECTIVITY_REACHED,
-	                       (void *)cb_reached,
+	                       (void *)cb_reflectivity_reached,
 	                       NULL);
 
 	// Configure threshold for "greater than 2000"
-	line_set_reflectivity_callback_threshold(&line, '>', 2000, 0);
+	line_set_reflectivity_callback_threshold(&l, '>', 2000, 0);
 
 	printf("Press key to exit\n");
 	getchar();

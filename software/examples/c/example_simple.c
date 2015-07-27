@@ -13,8 +13,8 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	Line line;
-	line_create(&line, UID, &ipcon); 
+	Line l;
+	line_create(&l, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -25,8 +25,8 @@ int main() {
 
 	// Get current reflectivity
 	uint16_t reflectivity;
-	if(line_get_reflectivity(&line, &reflectivity) < 0) {
-		fprintf(stderr, "Could not get value, probably timeout\n");
+	if(line_get_reflectivity(&l, &reflectivity) < 0) {
+		fprintf(stderr, "Could not get reflectivity, probably timeout\n");
 		exit(1);
 	}
 

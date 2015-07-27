@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change to your UID
 
-// Callback function for reflectivity 
+// Callback function for reflectivity callback
 void cb_reflectivity(uint16_t reflectivity, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
@@ -20,8 +20,8 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	Line line;
-	line_create(&line, UID, &ipcon); 
+	Line l;
+	line_create(&l, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -30,13 +30,13 @@ int main() {
 	}
 	// Don't use device before ipcon is connected
 
-	// Set Period for reflectivity callback to 1s (1000ms)
-	// Note: The reflectivity callback is only called every second if the 
-	//       reflectivity has changed since the last call!
-	line_set_reflectivity_callback_period(&line, 1000);
+	// Set period for reflectivity callback to 1s (1000ms)
+	// Note: The reflectivity callback is only called every second
+	//       if the reflectivity has changed since the last call!
+	line_set_reflectivity_callback_period(&l, 1000);
 
 	// Register reflectivity callback to function cb_reflectivity
-	line_register_callback(&line,
+	line_register_callback(&l,
 	                       LINE_CALLBACK_REFLECTIVITY,
 	                       (void *)cb_reflectivity,
 	                       NULL);

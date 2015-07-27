@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-  
+# -*- coding: utf-8 -*-
 
 HOST = "localhost"
 PORT = 4223
@@ -10,14 +10,13 @@ from tinkerforge.bricklet_line import Line
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
-    line = Line(UID, ipcon) # Create device object
+    l = Line(UID, ipcon) # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
     # Get current reflectivity
-    reflectivity = line.get_reflectivity()
-
+    reflectivity = l.get_reflectivity()
     print('Reflectivity: ' + str(reflectivity))
 
     raw_input('Press key to exit\n') # Use input() in Python 3

@@ -6,28 +6,28 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change to your UID
 
-	// Callback for reflectivity greater than 2000
-	static void ReachedCB(BrickletLine sender, int reflectivity)
+	// Callback function for reflectivity greater than 2000
+	static void ReflectivityReachedCB(BrickletLine sender, int reflectivity)
 	{
 		System.Console.WriteLine("Reflectivity: " + reflectivity);
 	}
 
-	static void Main() 
+	static void Main()
 	{
 		IPConnection ipcon = new IPConnection(); // Create IP connection
-		BrickletLine line = new BrickletLine(UID, ipcon); // Create device object
+		BrickletLine l = new BrickletLine(UID, ipcon); // Create device object
 
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get threshold callbacks with a debounce time of 1 seconds (1000ms)
-		line.SetDebouncePeriod(1000);
+		// Get threshold callbacks with a debounce time of 1 second (1000ms)
+		l.SetDebouncePeriod(1000);
 
-		// Register threshold reached callback to function ReachedCB
-		line.ReflectivityReached += ReachedCB;
+		// Register threshold reached callback to function ReflectivityReachedCB
+		l.ReflectivityReached += ReflectivityReachedCB;
 
 		// Configure threshold for "greater than 2000"
-		line.SetReflectivityCallbackThreshold('>', 2000, 0);
+		l.SetReflectivityCallbackThreshold('>', 2000, 0);
 
 		System.Console.WriteLine("Press enter to exit");
 		System.Console.ReadLine();

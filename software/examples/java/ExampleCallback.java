@@ -1,5 +1,5 @@
-import com.tinkerforge.BrickletLine;
 import com.tinkerforge.IPConnection;
+import com.tinkerforge.BrickletLine;
 
 public class ExampleCallback {
 	private static final String HOST = "localhost";
@@ -10,18 +10,18 @@ public class ExampleCallback {
 	//       might normally want to catch are described in the documentation
 	public static void main(String args[]) throws Exception {
 		IPConnection ipcon = new IPConnection(); // Create IP connection
-		BrickletLine line = new BrickletLine(UID, ipcon); // Create device object
+		BrickletLine l = new BrickletLine(UID, ipcon); // Create device object
 
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Set Period for reflectivity callback to 1s (1000ms)
-		// Note: The reflectivity callback is only called every second if the 
-		//       reflectivity has changed since the last call!
-		line.setReflectivityCallbackPeriod(1000);
+		// Set period for reflectivity callback to 1s (1000ms)
+		// Note: The reflectivity callback is only called every second
+		//       if the reflectivity has changed since the last call!
+		l.setReflectivityCallbackPeriod(1000);
 
-		// Add and implement reflectivity listener (called if reflectivity changes)
-		line.addReflectivityListener(new BrickletLine.ReflectivityListener() {
+		// Add reflectivity listener
+		l.addReflectivityListener(new BrickletLine.ReflectivityListener() {
 			public void reflectivity(int reflectivity) {
 				System.out.println("Reflectivity: " + reflectivity);
 			}
