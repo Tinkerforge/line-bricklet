@@ -47,6 +47,7 @@
 #define BRICKLET_NO_OFFSET
 #define BRICKLET_HAS_SIMPLE_SENSOR
 #define INVOCATION_IN_BRICKLET_CODE
+#define SIMPLE_VALUE_TYPE uint16_t
 #define NUM_SIMPLE_VALUES 1
 
 typedef struct {
