@@ -10,7 +10,7 @@ type
   TExample = class
   private
     ipcon: TIPConnection;
-    line: TBrickletLine;
+    l: TBrickletLine;
   public
     procedure Execute;
   end;
@@ -30,14 +30,14 @@ begin
   ipcon := TIPConnection.Create;
 
   { Create device object }
-  line := TBrickletLine.Create(UID, ipcon);
+  l := TBrickletLine.Create(UID, ipcon);
 
   { Connect to brickd }
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
   { Get current reflectivity }
-  reflectivity := line.GetReflectivity;
+  reflectivity := l.GetReflectivity;
   WriteLn(Format('Reflectivity: %d', [reflectivity]));
 
   WriteLn('Press key to exit');

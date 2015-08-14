@@ -10,9 +10,9 @@ type
   TExample = class
   private
     ipcon: TIPConnection;
-    line: TBrickletLine;
+    l: TBrickletLine;
   public
-    procedure ReachedCB(sender: TBrickletLine; const reflectivity: word);
+    procedure ReflectivityReachedCB(sender: TBrickletLine; const reflectivity: word);
     procedure Execute;
   end;
 
@@ -24,8 +24,8 @@ const
 var
   e: TExample;
 
-{ Callback for reflectivity greater than 2000 }
-procedure TExample.ReachedCB(sender: TBrickletLine; const reflectivity: word);
+{ Callback procedure for reflectivity greater than 2000 }
+procedure TExample.ReflectivityReachedCB(sender: TBrickletLine; const reflectivity: word);
 begin
   WriteLn(Format('Reflectivity: %d', [reflectivity]));
 end;
@@ -36,20 +36,20 @@ begin
   ipcon := TIPConnection.Create;
 
   { Create device object }
-  line := TBrickletLine.Create(UID, ipcon);
+  l := TBrickletLine.Create(UID, ipcon);
 
   { Connect to brickd }
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Get threshold callbacks with a debounce time of 1 seconds (1000ms) }
-  line.SetDebouncePeriod(1000);
+  { Get threshold callbacks with a debounce time of 1 second (1000ms) }
+  l.SetDebouncePeriod(1000);
 
-  { Register threshold reached callback to procedure ReachedCB }
-  line.OnReflectivityReached := {$ifdef FPC}@{$endif}ReachedCB;
+  { Register threshold reached callback to procedure ReflectivityReachedCB }
+  l.OnReflectivityReached := {$ifdef FPC}@{$endif}ReflectivityReachedCB;
 
   { Configure threshold for "greater than 2000" }
-  line.SetReflectivityCallbackThreshold('>', 2000, 0);
+  l.SetReflectivityCallbackThreshold('>', 2000, 0);
 
   WriteLn('Press key to exit');
   ReadLn;

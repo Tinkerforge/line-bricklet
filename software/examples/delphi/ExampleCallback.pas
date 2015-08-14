@@ -10,7 +10,7 @@ type
   TExample = class
   private
     ipcon: TIPConnection;
-    line: TBrickletLine;
+    l: TBrickletLine;
   public
     procedure ReflectivityCB(sender: TBrickletLine; const reflectivity: word);
     procedure Execute;
@@ -24,7 +24,7 @@ const
 var
   e: TExample;
 
-{ Callback function for reflectivity }
+{ Callback procedure for reflectivity callback }
 procedure TExample.ReflectivityCB(sender: TBrickletLine; const reflectivity: word);
 begin
   WriteLn(Format('Reflectivity: %d', [reflectivity]));
@@ -36,19 +36,19 @@ begin
   ipcon := TIPConnection.Create;
 
   { Create device object }
-  line := TBrickletLine.Create(UID, ipcon);
+  l := TBrickletLine.Create(UID, ipcon);
 
   { Connect to brickd }
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Set Period for reflectivity callback to 1s (1000ms)
-    Note: The reflectivity callback is only called every second if the
-          reflectivity has changed since the last call! }
-  line.SetReflectivityCallbackPeriod(1000);
+  { Set period for reflectivity callback to 1s (1000ms)
+    Note: The reflectivity callback is only called every second
+          if the reflectivity has changed since the last call! }
+  l.SetReflectivityCallbackPeriod(1000);
 
   { Register reflectivity callback to procedure ReflectivityCB }
-  line.OnReflectivity := {$ifdef FPC}@{$endif}ReflectivityCB;
+  l.OnReflectivity := {$ifdef FPC}@{$endif}ReflectivityCB;
 
   WriteLn('Press key to exit');
   ReadLn;
