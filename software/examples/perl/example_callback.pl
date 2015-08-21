@@ -15,7 +15,7 @@ sub cb_reflectivity
 {
     my ($reflectivity) = @_;
 
-    print "Reflectivity: " . $reflectivity . "\n";
+    print "Reflectivity: $reflectivity\n";
 }
 
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
