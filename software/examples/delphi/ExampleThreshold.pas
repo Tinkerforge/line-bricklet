@@ -24,7 +24,7 @@ const
 var
   e: TExample;
 
-{ Callback procedure for reflectivity greater than 2000 }
+{ Callback procedure for reflectivity reached callback }
 procedure TExample.ReflectivityReachedCB(sender: TBrickletLine; const reflectivity: word);
 begin
   WriteLn(Format('Reflectivity: %d', [reflectivity]));
@@ -45,10 +45,10 @@ begin
   { Get threshold callbacks with a debounce time of 1 second (1000ms) }
   l.SetDebouncePeriod(1000);
 
-  { Register threshold reached callback to procedure ReflectivityReachedCB }
+  { Register reflectivity reached callback to procedure ReflectivityReachedCB }
   l.OnReflectivityReached := {$ifdef FPC}@{$endif}ReflectivityReachedCB;
 
-  { Configure threshold for "greater than 2000" }
+  { Configure threshold for reflectivity "greater than 2000" }
   l.SetReflectivityCallbackThreshold('>', 2000, 0);
 
   WriteLn('Press key to exit');

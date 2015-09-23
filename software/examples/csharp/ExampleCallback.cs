@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -9,7 +10,7 @@ class Example
 	// Callback function for reflectivity callback
 	static void ReflectivityCB(BrickletLine sender, int reflectivity)
 	{
-		System.Console.WriteLine("Reflectivity: " + reflectivity);
+		Console.WriteLine("Reflectivity: " + reflectivity);
 	}
 
 	static void Main()
@@ -20,16 +21,16 @@ class Example
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
+		// Register reflectivity callback to function ReflectivityCB
+		l.Reflectivity += ReflectivityCB;
+
 		// Set period for reflectivity callback to 1s (1000ms)
 		// Note: The reflectivity callback is only called every second
 		//       if the reflectivity has changed since the last call!
 		l.SetReflectivityCallbackPeriod(1000);
 
-		// Register reflectivity callback to function ReflectivityCB
-		l.Reflectivity += ReflectivityCB;
-
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

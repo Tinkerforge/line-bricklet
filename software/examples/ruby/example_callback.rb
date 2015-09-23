@@ -16,15 +16,15 @@ l = BrickletLine.new UID, ipcon # Create device object
 ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Set period for reflectivity callback to 1s (1000ms)
-# Note: The reflectivity callback is only called every second
-#       if the reflectivity has changed since the last call!
-l.set_reflectivity_callback_period 1000
-
 # Register reflectivity callback
 l.register_callback(BrickletLine::CALLBACK_REFLECTIVITY) do |reflectivity|
   puts "Reflectivity: #{reflectivity}"
 end
+
+# Set period for reflectivity callback to 1s (1000ms)
+# Note: The reflectivity callback is only called every second
+#       if the reflectivity has changed since the last call!
+l.set_reflectivity_callback_period 1000
 
 puts 'Press key to exit'
 $stdin.gets

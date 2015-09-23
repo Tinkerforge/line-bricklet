@@ -8,9 +8,9 @@ UID = "XYZ" # Change to your UID
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_line import BrickletLine
 
-# Callback function for reflectivity greater than 2000
+# Callback function for reflectivity reached callback
 def cb_reflectivity_reached(reflectivity):
-    print('Reflectivity: ' + str(reflectivity))
+    print("Reflectivity: " + str(reflectivity))
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
@@ -22,11 +22,11 @@ if __name__ == "__main__":
     # Get threshold callbacks with a debounce time of 1 second (1000ms)
     l.set_debounce_period(1000)
 
-    # Register threshold reached callback to function cb_reflectivity_reached
+    # Register reflectivity reached callback to function cb_reflectivity_reached
     l.register_callback(l.CALLBACK_REFLECTIVITY_REACHED, cb_reflectivity_reached)
 
-    # Configure threshold for "greater than 2000"
-    l.set_reflectivity_callback_threshold('>', 2000, 0)
+    # Configure threshold for reflectivity "greater than 2000"
+    l.set_reflectivity_callback_threshold(">", 2000, 0)
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

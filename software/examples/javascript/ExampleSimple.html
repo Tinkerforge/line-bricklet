@@ -31,23 +31,23 @@
                     ipcon.disconnect();
                 }
                 ipcon = new Tinkerforge.IPConnection(); // Create IP connection
-                var line = new Tinkerforge.BrickletLine(UID, ipcon); // Create device object
+                var l = new Tinkerforge.BrickletLine(UID, ipcon); // Create device object
                 ipcon.connect(HOST, PORT,
                     function(error) {
-                        textArea.value += 'Error: '+error+ '\n';
+                        textArea.value += 'Error: ' + error + '\n';
                     }
                 ); // Connect to brickd
                 // Don't use device before ipcon is connected
 
                 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-                    function(connectReason) {
+                    function (connectReason) {
                         // Get current reflectivity
-                        line.getReflectivity(
-                            function(reflectivity) {
-                                textArea.value += 'Reflectivity: '+reflectivity+'\n';
+                        l.getReflectivity(
+                            function (reflectivity) {
+                                textArea.value += 'Reflectivity: ' + reflectivity + '\n';
                             },
-                            function(error) {
-                                textArea.value += 'Error: '+error+'\n';
+                            function (error) {
+                                textArea.value += 'Error: ' + error + '\n';
                             }
                         );
                     }

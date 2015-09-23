@@ -10,7 +10,7 @@ from tinkerforge.bricklet_line import BrickletLine
 
 # Callback function for reflectivity callback
 def cb_reflectivity(reflectivity):
-    print('Reflectivity: ' + str(reflectivity))
+    print("Reflectivity: " + str(reflectivity))
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
@@ -19,13 +19,13 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
+    # Register reflectivity callback to function cb_reflectivity
+    l.register_callback(l.CALLBACK_REFLECTIVITY, cb_reflectivity)
+
     # Set period for reflectivity callback to 1s (1000ms)
     # Note: The reflectivity callback is only called every second
     #       if the reflectivity has changed since the last call!
     l.set_reflectivity_callback_period(1000)
 
-    # Register reflectivity callback to function cb_reflectivity
-    l.register_callback(l.CALLBACK_REFLECTIVITY, cb_reflectivity)
-
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

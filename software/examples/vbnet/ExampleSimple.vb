@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleSimple
@@ -14,10 +15,10 @@ Module ExampleSimple
 
         ' Get current reflectivity
         Dim reflectivity As Integer = l.GetReflectivity()
-        System.Console.WriteLine("Reflectivity: " + reflectivity.ToString())
+        Console.WriteLine("Reflectivity: " + reflectivity.ToString())
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

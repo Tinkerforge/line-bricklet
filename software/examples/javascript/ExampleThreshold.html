@@ -31,27 +31,29 @@
                     ipcon.disconnect();
                 }
                 ipcon = new Tinkerforge.IPConnection(); // Create IP connection
-                var line = new Tinkerforge.BrickletLine(UID, ipcon); // Create device object
+                var l = new Tinkerforge.BrickletLine(UID, ipcon); // Create device object
                 ipcon.connect(HOST, PORT,
                     function(error) {
-                        textArea.value += 'Error: '+error+ '\n';
+                        textArea.value += 'Error: ' + error + '\n';
                     }
                 ); // Connect to brickd
                 // Don't use device before ipcon is connected
 
                 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-                    function(connectReason) {
-                        // Get threshold callbacks with a debounce time of 1 seconds (1000ms)
-                        line.setDebouncePeriod(1000);
-                        // Configure threshold for "greater than 2000"
-                        line.setReflectivityCallbackThreshold('>', 2000, 0);
+                    function (connectReason) {
+                        // Get threshold callbacks with a debounce time of 1 second (1000ms)
+                        l.setDebouncePeriod(1000);
+
+                        // Configure threshold for reflectivity "greater than 2000"
+                        l.setReflectivityCallbackThreshold('>', 2000, 0);
                     }
                 );
-                // Register threshold reached callback
-                line.on(Tinkerforge.BrickletLine.CALLBACK_REFLECTIVITY_REACHED,
-                    // Callback for reflectivity greater than 2000
-                    function(reflectivity) {
-                        textArea.value += 'Reflectivity: '+reflectivity+'\n';
+
+                // Register reflectivity reached callback
+                l.on(Tinkerforge.BrickletLine.CALLBACK_REFLECTIVITY_REACHED,
+                    // Callback function for reflectivity reached callback
+                    function (reflectivity) {
+                        textArea.value += 'Reflectivity: ' + reflectivity + '\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );

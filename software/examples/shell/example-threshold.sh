@@ -1,14 +1,17 @@
 #!/bin/sh
-# connects to localhost:4223 by default, use --host and --port to change it
+# Connects to localhost:4223 by default, use --host and --port to change this
 
-# change to your UID
-uid=XYZ
+uid=XYZ # Change to your UID
 
-# get threshold callbacks with a debounce time of 1 seconds (1000ms)
-tinkerforge call line-bricklet $uid set-debounce-period 1000 
+# Get threshold callbacks with a debounce time of 1 second (1000ms)
+tinkerforge call line-bricklet $uid set-debounce-period 1000
 
-# configure threshold for "greater than 2000"
+# Handle incoming reflectivity reached callbacks
+tinkerforge dispatch line-bricklet $uid reflectivity-reached &
+
+# Configure threshold for reflectivity "greater than 2000"
 tinkerforge call line-bricklet $uid set-reflectivity-callback-threshold greater 2000 0
 
-# handle incoming reflectivity-reached callbacks
-tinkerforge dispatch line-bricklet $uid reflectivity-reached
+echo "Press key to exit"; read dummy
+
+kill -- -$$ # Stop callback dispatch in background

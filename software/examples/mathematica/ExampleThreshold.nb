@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      6198,        144]
-NotebookOptionsPosition[      5766,        123]
-NotebookOutlinePosition[      6104,        138]
-CellTagsIndexPosition[      6061,        135]
+NotebookDataLength[      6065,        144]
+NotebookOptionsPosition[      5638,        123]
+NotebookOutlinePosition[      5971,        138]
+CellTagsIndexPosition[      5928,        135]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26,73 +26,72 @@ Cell[BoxData[{
    3.600685369797085*^9}],
 
 Cell[BoxData[{
- RowBox[{"host", "=", "\"\<localhost\>\""}], "\[IndentingNewLine]", 
- RowBox[{"port", "=", "4223"}], "\[IndentingNewLine]", 
+ RowBox[{"hhost", "=", "\"\<localhost\>\""}], "\n", 
+ RowBox[{"port", "=", "4223"}], "\n", 
  RowBox[{
-  RowBox[{"uid", "=", "\"\<amb\>\""}], 
-  RowBox[{"(*", " ", 
-   RowBox[{"Change", " ", "to", " ", "your", " ", "UID"}], " ", "*)"}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
+  RowBox[{"uid", "=", "\"\<XYZ\>\""}], 
+  RowBox[{"(*", 
+   RowBox[{"Change", " ", "to", " ", "your", " ", "UID"}], "*)"}], "\n", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
    RowBox[{
    "Create", " ", "IPConnection", " ", "and", " ", "device", " ", "object"}], 
-   " ", "*)"}]}], "\[IndentingNewLine]", 
+   "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{"ipcon", "=", 
   RowBox[{"NETNew", "[", "\"\<Tinkerforge.IPConnection\>\"", "]"}]}], "\n", 
  RowBox[{"l", "=", 
   RowBox[{"NETNew", "[", 
    RowBox[{"\"\<Tinkerforge.BrickletLine\>\"", ",", "uid", ",", "ipcon"}], 
-   "]"}]}], "\[IndentingNewLine]", 
+   "]"}]}], "\n", 
  RowBox[{
   RowBox[{"ipcon", "@", 
    RowBox[{"Connect", "[", 
-    RowBox[{"host", ",", "port"}], "]"}]}], "\n", "\n", 
-  RowBox[{"(*", " ", 
+    RowBox[{"host", ",", "port"}], "]"}]}], "\n", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
    RowBox[{
    "Get", " ", "threshold", " ", "callbacks", " ", "with", " ", "a", " ", 
     "debounce", " ", "time", " ", "of", " ", "1", " ", "second", " ", 
     RowBox[{"(", 
-     RowBox[{"1000", "ms"}], ")"}]}], " ", "*)"}]}], "\n", 
+     RowBox[{"1000", "ms"}], ")"}]}], "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"l", "@", 
-   RowBox[{"SetDebouncePeriod", "[", "1000", "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"SetDebouncePeriod", "[", "1000", "]"}]}], "\n", 
   "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
+  RowBox[{"(*", 
    RowBox[{
-   "Callback", " ", "for", " ", "illuminance", " ", "greater", " ", "than", 
-    " ", "200", " ", "Lux"}], " ", "*)"}]}], "\n", 
+   "Callback", " ", "function", " ", "for", " ", "reflectivity", " ", 
+    "reached", " ", "callback"}], "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"ReflectivityReachedCB", "[", 
    RowBox[{"sender_", ",", "reflectivity_"}], "]"}], ":=", 
   "\[IndentingNewLine]", 
   RowBox[{"Print", "[", 
    RowBox[{"\"\<Reflectivity: \>\"", "<>", 
-    RowBox[{"ToString", "[", "reflectivity", "]"}]}], 
-   "]"}]}], "\[IndentingNewLine]", 
+    RowBox[{"ToString", "[", "reflectivity", "]"}]}], "]"}]}], "\n", 
  RowBox[{
   RowBox[{"AddEventHandler", "[", 
    RowBox[{
     RowBox[{"l", "@", "ReflectivityReached"}], ",", "ReflectivityReachedCB"}],
     "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
+  RowBox[{"(*", 
    RowBox[{
-   "Configure", " ", "threshold", " ", "for", " ", 
-    "\"\<greater than 2000\>\""}], " ", "*)"}]}], "\[IndentingNewLine]", 
+   "Configure", " ", "threshold", " ", "for", " ", "reflectivity", " ", 
+    "\"\<greater than 2000\>\""}], "*)"}]}], "\n", 
  RowBox[{"option", "=", 
   "Tinkerforge`BrickletLine`THRESHOLDUOPTIONUGREATER"}], "\n", 
  RowBox[{
   RowBox[{"l", "@", 
    RowBox[{"SetReflectivityCallbackThreshold", "[", 
     RowBox[{"option", ",", "2000", ",", "0"}], "]"}]}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+  "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Input", "[", "\"\<Click OK to exit\>\"", "]"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
-   RowBox[{"Clean", " ", "up"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Clean", " ", "up"}], "*)"}]}], "\n", 
  RowBox[{"ipcon", "@", 
-  RowBox[{"Disconnect", "[", "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"ReleaseNETObject", "[", "l", "]"}], "\[IndentingNewLine]", 
+  RowBox[{"Disconnect", "[", "]"}]}], "\n", 
+ RowBox[{"ReleaseNETObject", "[", "l", "]"}], "\n", 
  RowBox[{"ReleaseNETObject", "[", "ipcon", "]"}]}], "Input",
  CellChangeTimes->{{3.600075175574196*^9, 3.600075177574486*^9}, {
    3.600075518821967*^9, 3.60007554243471*^9}, {3.600075580562348*^9, 
@@ -119,11 +118,12 @@ Cell[BoxData[{
    3.60060918655473*^9, {3.600609227515625*^9, 3.600609227953993*^9}, {
    3.600609340818445*^9, 3.600609544802136*^9}, {3.600609618298398*^9, 
    3.6006096224709063`*^9}, 3.600610394591187*^9, {3.60075928625741*^9, 
-   3.600759295711212*^9}, {3.6007595135101767`*^9, 3.6007596011391697`*^9}}]
+   3.600759295711212*^9}, {3.6007595135101767`*^9, 3.6007596011391697`*^9}, {
+   3.6519949952123127`*^9, 3.651994997116479*^9}}]
 },
 WindowSize->{1521, 867},
-WindowMargins->{{261, Automatic}, {73, Automatic}},
-FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
+WindowMargins->{{260, 137}, {72, Automatic}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (November 20, 2012)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -138,7 +138,7 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[400, 13, 652, 12, 55, "Input"],
-Cell[1055, 27, 4707, 94, 605, "Input"]
+Cell[1055, 27, 4579, 94, 605, "Input"]
 }
 ]
 *)

@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     # Get current reflectivity
     reflectivity = l.get_reflectivity()
-    print('Reflectivity: ' + str(reflectivity))
+    print("Reflectivity: " + str(reflectivity))
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

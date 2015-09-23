@@ -1,20 +1,20 @@
 function octave_example_simple()
     more off;
-    
+
     HOST = "localhost";
     PORT = 4223;
-    UID = "mQH"; % Change to your UID
+    UID = "XYZ"; % Change to your UID
 
     ipcon = java_new("com.tinkerforge.IPConnection"); % Create IP connection
-    line = java_new("com.tinkerforge.BrickletLine", UID, ipcon); % Create device object
+    l = java_new("com.tinkerforge.BrickletLine", UID, ipcon); % Create device object
 
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
     % Get current reflectivity
-    reflectivity = line.getReflectivity();
-    fprintf("Reflectivity: %g\n", reflectivity);
+    reflectivity = l.getReflectivity();
+    fprintf("Reflectivity: %d\n", reflectivity);
 
-    input("Press any key to exit...\n", "s");
+    input("Press key to exit\n", "s");
     ipcon.disconnect();
 end

@@ -19,12 +19,12 @@ ipcon.connect HOST, PORT # Connect to brickd
 # Get threshold callbacks with a debounce time of 1 second (1000ms)
 l.set_debounce_period 1000
 
-# Register threshold reached callback for reflectivity greater than 2000
+# Register reflectivity reached callback
 l.register_callback(BrickletLine::CALLBACK_REFLECTIVITY_REACHED) do |reflectivity|
   puts "Reflectivity: #{reflectivity}"
 end
 
-# Configure threshold for "greater than 2000"
+# Configure threshold for reflectivity "greater than 2000"
 l.set_reflectivity_callback_threshold '>', 2000, 0
 
 puts 'Press key to exit'

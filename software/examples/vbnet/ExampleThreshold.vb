@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleThreshold
@@ -5,9 +6,9 @@ Module ExampleThreshold
     Const PORT As Integer = 4223
     Const UID As String = "XYZ" ' Change to your UID
 
-    ' Callback function for reflectivity greater than 2000
+    ' Callback subroutine for reflectivity reached callback
     Sub ReflectivityReachedCB(ByVal sender As BrickletLine, ByVal reflectivity As Integer)
-        System.Console.WriteLine("Reflectivity: " + reflectivity.ToString())
+        Console.WriteLine("Reflectivity: " + reflectivity.ToString())
     End Sub
 
     Sub Main()
@@ -20,14 +21,14 @@ Module ExampleThreshold
         ' Get threshold callbacks with a debounce time of 1 second (1000ms)
         l.SetDebouncePeriod(1000)
 
-        ' Register threshold reached callback to function ReflectivityReachedCB
+        ' Register reflectivity reached callback to subroutine ReflectivityReachedCB
         AddHandler l.ReflectivityReached, AddressOf ReflectivityReachedCB
 
-        ' Configure threshold for "greater than 2000"
+        ' Configure threshold for reflectivity "greater than 2000"
         l.SetReflectivityCallbackThreshold(">"C, 2000, 0)
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

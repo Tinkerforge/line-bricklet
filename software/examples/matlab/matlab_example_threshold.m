@@ -4,28 +4,28 @@ function matlab_example_threshold()
 
     HOST = 'localhost';
     PORT = 4223;
-    UID = 'mQH'; % Change to your UID
-    
+    UID = 'XYZ'; % Change to your UID
+
     ipcon = IPConnection(); % Create IP connection
-    line = BrickletLine(UID, ipcon); % Create device object
+    l = BrickletLine(UID, ipcon); % Create device object
 
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Get threshold callbacks with a debounce time of 1 seconds (1000ms)
-    line.setDebouncePeriod(1000);
+    % Get threshold callbacks with a debounce time of 1 second (1000ms)
+    l.setDebouncePeriod(1000);
 
-    % Register threshold reached callback to function cb_reached
-    set(line, 'ReflectivityReachedCallback', @(h, e) cb_reached(e));
-    
-    % Configure threshold for "greater than 2000"
-    line.setReflectivityCallbackThreshold('>', 2000, 0);
+    % Register reflectivity reached callback to function cb_reflectivity_reached
+    set(l, 'ReflectivityReachedCallback', @(h, e) cb_reflectivity_reached(e));
 
-    input('Press any key to exit...\n', 's');
+    % Configure threshold for reflectivity "greater than 2000"
+    l.setReflectivityCallbackThreshold('>', 2000, 0);
+
+    input('Press key to exit\n', 's');
     ipcon.disconnect();
 end
 
-% Callback for reflectivity greater than 2000
-function cb_reached(e)
-    fprintf('Reflectivity: %g\n', e.reflectivity);
+% Callback function for reflectivity reached callback
+function cb_reflectivity_reached(e)
+    fprintf('Reflectivity: %i\n', e.reflectivity);
 end

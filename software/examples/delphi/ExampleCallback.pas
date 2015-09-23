@@ -42,13 +42,13 @@ begin
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
+  { Register reflectivity callback to procedure ReflectivityCB }
+  l.OnReflectivity := {$ifdef FPC}@{$endif}ReflectivityCB;
+
   { Set period for reflectivity callback to 1s (1000ms)
     Note: The reflectivity callback is only called every second
           if the reflectivity has changed since the last call! }
   l.SetReflectivityCallbackPeriod(1000);
-
-  { Register reflectivity callback to procedure ReflectivityCB }
-  l.OnReflectivity := {$ifdef FPC}@{$endif}ReflectivityCB;
 
   WriteLn('Press key to exit');
   ReadLn;

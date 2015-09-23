@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -16,10 +17,10 @@ class Example
 
 		// Get current reflectivity
 		int reflectivity = l.GetReflectivity();
-		System.Console.WriteLine("Reflectivity: " + reflectivity);
+		Console.WriteLine("Reflectivity: " + reflectivity);
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }
