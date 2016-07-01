@@ -4,7 +4,7 @@ Imports Tinkerforge
 Module ExampleCallback
     Const HOST As String = "localhost"
     Const PORT As Integer = 4223
-    Const UID As String = "XYZ" ' Change to your UID
+    Const UID As String = "XYZ" ' Change XYZ to the UID of your Line Bricklet
 
     ' Callback subroutine for reflectivity callback
     Sub ReflectivityCB(ByVal sender As BrickletLine, ByVal reflectivity As Integer)

@@ -5,7 +5,7 @@
 
 #define HOST "localhost"
 #define PORT 4223
-#define UID "XYZ" // Change to your UID
+#define UID "XYZ" // Change XYZ to the UID of your Line Bricklet
 
 // Callback function for reflectivity reached callback
 void cb_reflectivity_reached(uint16_t reflectivity, void *user_data) {

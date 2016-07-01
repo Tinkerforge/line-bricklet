@@ -8,7 +8,7 @@ use Tinkerforge\BrickletLine;
 
 const HOST = 'localhost';
 const PORT = 4223;
-const UID = 'XYZ'; // Change to your UID
+const UID = 'XYZ'; // Change XYZ to the UID of your Line Bricklet
 
 // Callback function for reflectivity reached callback
 function cb_reflectivityReached($reflectivity)
@@ -26,7 +26,8 @@ $ipcon->connect(HOST, PORT); // Connect to brickd
 $l->setDebouncePeriod(1000);
 
 // Register reflectivity reached callback to function cb_reflectivityReached
-$l->registerCallback(BrickletLine::CALLBACK_REFLECTIVITY_REACHED, 'cb_reflectivityReached');
+$l->registerCallback(BrickletLine::CALLBACK_REFLECTIVITY_REACHED,
+                     'cb_reflectivityReached');
 
 // Configure threshold for reflectivity "greater than 2000"
 $l->setReflectivityCallbackThreshold('>', 2000, 0);
