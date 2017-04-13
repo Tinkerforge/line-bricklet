@@ -22,7 +22,7 @@ class Example
 		// Don't use device before ipcon is connected
 
 		// Register reflectivity callback to function ReflectivityCB
-		l.Reflectivity += ReflectivityCB;
+		l.ReflectivityCallback += ReflectivityCB;
 
 		// Set period for reflectivity callback to 1s (1000ms)
 		// Note: The reflectivity callback is only called every second

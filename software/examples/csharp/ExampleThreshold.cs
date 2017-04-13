@@ -25,7 +25,7 @@ class Example
 		l.SetDebouncePeriod(1000);
 
 		// Register reflectivity reached callback to function ReflectivityReachedCB
-		l.ReflectivityReached += ReflectivityReachedCB;
+		l.ReflectivityReachedCallback += ReflectivityReachedCB;
 
 		// Configure threshold for reflectivity "greater than 2000"
 		l.SetReflectivityCallbackThreshold('>', 2000, 0);
