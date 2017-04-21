@@ -10,7 +10,7 @@ tinkerforge call line-bricklet $uid set-debounce-period 1000
 tinkerforge dispatch line-bricklet $uid reflectivity-reached &
 
 # Configure threshold for reflectivity "greater than 2000"
-tinkerforge call line-bricklet $uid set-reflectivity-callback-threshold greater 2000 0
+tinkerforge call line-bricklet $uid set-reflectivity-callback-threshold threshold-option-greater 2000 0
 
 echo "Press key to exit"; read dummy
 
