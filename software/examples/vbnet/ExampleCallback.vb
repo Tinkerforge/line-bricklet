@@ -19,7 +19,7 @@ Module ExampleCallback
         ' Don't use device before ipcon is connected
 
         ' Register reflectivity callback to subroutine ReflectivityCB
-        AddHandler l.Reflectivity, AddressOf ReflectivityCB
+        AddHandler l.ReflectivityCallback, AddressOf ReflectivityCB
 
         ' Set period for reflectivity callback to 1s (1000ms)
         ' Note: The reflectivity callback is only called every second

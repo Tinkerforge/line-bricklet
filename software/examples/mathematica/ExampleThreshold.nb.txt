@@ -16,7 +16,7 @@ l@SetDebouncePeriod[1000]
 (*Callback function for reflectivity reached callback*)
 ReflectivityReachedCB[sender_,reflectivity_]:=
  Print["Reflectivity: "<>ToString[reflectivity]]
-AddEventHandler[l@ReflectivityReached,ReflectivityReachedCB]
+AddEventHandler[l@ReflectivityReachedCallback,ReflectivityReachedCB]
 
 (*Configure threshold for reflectivity "greater than 2000"*)
 option=Tinkerforge`BrickletLine`THRESHOLDUOPTIONUGREATER

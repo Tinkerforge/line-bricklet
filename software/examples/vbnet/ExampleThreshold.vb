@@ -23,7 +23,7 @@ Module ExampleThreshold
         l.SetDebouncePeriod(1000)
 
         ' Register reflectivity reached callback to subroutine ReflectivityReachedCB
-        AddHandler l.ReflectivityReached, AddressOf ReflectivityReachedCB
+        AddHandler l.ReflectivityReachedCallback, AddressOf ReflectivityReachedCB
 
         ' Configure threshold for reflectivity "greater than 2000"
         l.SetReflectivityCallbackThreshold(">"C, 2000, 0)

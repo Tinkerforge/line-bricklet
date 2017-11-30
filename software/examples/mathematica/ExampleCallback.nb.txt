@@ -13,7 +13,7 @@ ipcon@Connect[host,port]
 (*Callback function for reflectivity callback*)
 ReflectivityCB[sender_,reflectivity_]:=
  Print["Reflectivity: "<>ToString[reflectivity]]
-AddEventHandler[l@Reflectivity,ReflectivityCB]
+AddEventHandler[l@ReflectivityCallback,ReflectivityCB]
 
 (*Set period for reflectivity callback to 1s (1000ms)*)
 (*Note: The reflectivity callback is only called every second*)
