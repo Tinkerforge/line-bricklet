@@ -30,7 +30,7 @@ int main(void) {
 		return 1;
 	}
 
-	printf("Reflectivity: %d\n", reflectivity);
+	printf("Reflectivity: %u\n", reflectivity);
 
 	printf("Press key to exit\n");
 	getchar();

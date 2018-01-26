@@ -11,7 +11,7 @@
 void cb_reflectivity_reached(uint16_t reflectivity, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
-	printf("Reflectivity: %d\n", reflectivity);
+	printf("Reflectivity: %u\n", reflectivity);
 }
 
 int main(void) {
