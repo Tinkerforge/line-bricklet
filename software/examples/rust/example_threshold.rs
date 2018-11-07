@@ -15,10 +15,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Get threshold receivers with a debounce time of 1 second (1000ms).
     l.set_debounce_period(1000);
 
-    // Create receiver for reflectivity reached events.
-    let reflectivity_reached_receiver = l.get_reflectivity_reached_receiver();
+    let reflectivity_reached_receiver = l.get_reflectivity_reached_callback_receiver();
 
-    // Spawn thread to handle received events. This thread ends when the `l` object
+    // Spawn thread to handle received callback messages.
+    // This thread ends when the `l` object
     // is dropped, so there is no need for manual cleanup.
     thread::spawn(move || {
         for reflectivity_reached in reflectivity_reached_receiver {
