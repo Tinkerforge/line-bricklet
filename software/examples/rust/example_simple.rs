@@ -1,20 +1,20 @@
 use std::{error::Error, io};
 
-use tinkerforge::{ipconnection::IpConnection, line_bricklet::*};
+use tinkerforge::{ip_connection::IpConnection, line_bricklet::*};
 
-const HOST: &str = "127.0.0.1";
+const HOST: &str = "localhost";
 const PORT: u16 = 4223;
-const UID: &str = "XYZ"; // Change XYZ to the UID of your Line Bricklet
+const UID: &str = "XYZ"; // Change XYZ to the UID of your Line Bricklet.
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let ipcon = IpConnection::new(); // Create IP connection
-    let line_bricklet = LineBricklet::new(UID, &ipcon); // Create device object
+    let ipcon = IpConnection::new(); // Create IP connection.
+    let l = LineBricklet::new(UID, &ipcon); // Create device object.
 
-    ipcon.connect(HOST, PORT).recv()??; // Connect to brickd
-                                        // Don't use device before ipcon is connected
+    ipcon.connect((HOST, PORT)).recv()??; // Connect to brickd.
+                                          // Don't use device before ipcon is connected.
 
-    // Get current reflectivity
-    let reflectivity = line_bricklet.get_reflectivity().recv()?;
+    // Get current reflectivity.
+    let reflectivity = l.get_reflectivity().recv()?;
     println!("Reflectivity: {}", reflectivity);
 
     println!("Press enter to exit.");

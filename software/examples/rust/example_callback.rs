@@ -1,31 +1,32 @@
 use std::{error::Error, io, thread};
-use tinkerforge::{ipconnection::IpConnection, line_bricklet::*};
+use tinkerforge::{ip_connection::IpConnection, line_bricklet::*};
 
-const HOST: &str = "127.0.0.1";
+const HOST: &str = "localhost";
 const PORT: u16 = 4223;
-const UID: &str = "XYZ"; // Change XYZ to the UID of your Line Bricklet
+const UID: &str = "XYZ"; // Change XYZ to the UID of your Line Bricklet.
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let ipcon = IpConnection::new(); // Create IP connection
-    let line_bricklet = LineBricklet::new(UID, &ipcon); // Create device object
+    let ipcon = IpConnection::new(); // Create IP connection.
+    let l = LineBricklet::new(UID, &ipcon); // Create device object.
 
-    ipcon.connect(HOST, PORT).recv()??; // Connect to brickd
-                                        // Don't use device before ipcon is connected
+    ipcon.connect((HOST, PORT)).recv()??; // Connect to brickd.
+                                          // Don't use device before ipcon is connected.
 
-    //Create listener for reflectivity events.
-    let reflectivity_listener = line_bricklet.get_reflectivity_receiver();
-    // Spawn thread to handle received events. This thread ends when the line_bricklet
+    // Create receiver for reflectivity events.
+    let reflectivity_receiver = l.get_reflectivity_receiver();
+
+    // Spawn thread to handle received events. This thread ends when the `l` object
     // is dropped, so there is no need for manual cleanup.
     thread::spawn(move || {
-        for event in reflectivity_listener {
-            println!("Reflectivity: {}", event);
+        for reflectivity in reflectivity_receiver {
+            println!("Reflectivity: {}", reflectivity);
         }
     });
 
-    // Set period for reflectivity listener to 1s (1000ms)
+    // Set period for reflectivity receiver to 1s (1000ms).
     // Note: The reflectivity callback is only called every second
     //       if the reflectivity has changed since the last call!
-    line_bricklet.set_reflectivity_callback_period(1000);
+    l.set_reflectivity_callback_period(1000);
 
     println!("Press enter to exit.");
     let mut _input = String::new();
