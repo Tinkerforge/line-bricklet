@@ -4,6 +4,7 @@ setup:
 	# Handle incoming reflectivity callbacks
 	subscribe to tinkerforge/callback/line_bricklet/XYZ/reflectivity
 	publish '{"register": true}' to tinkerforge/register/line_bricklet/XYZ/reflectivity # Register reflectivity callback
+	
 	# Set period for reflectivity callback to 1s (1000ms)
 	# Note: The reflectivity callback is only called every second
 	#       if the reflectivity has changed since the last call!
