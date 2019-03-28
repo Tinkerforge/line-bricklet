@@ -3,4 +3,4 @@
 setup:
 	# Get current reflectivity
 	subscribe to tinkerforge/response/line_bricklet/XYZ/get_reflectivity
-	publish '' to tinkerforge/request/line_bricklet/XYZ/get_reflectivity 
+	publish '' to tinkerforge/request/line_bricklet/XYZ/get_reflectivity
