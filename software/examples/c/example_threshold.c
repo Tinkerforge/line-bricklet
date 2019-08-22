@@ -36,7 +36,7 @@ int main(void) {
 	// Register reflectivity reached callback to function cb_reflectivity_reached
 	line_register_callback(&l,
 	                       LINE_CALLBACK_REFLECTIVITY_REACHED,
-	                       (void *)cb_reflectivity_reached,
+	                       (void (*)(void))cb_reflectivity_reached,
 	                       NULL);
 
 	// Configure threshold for reflectivity "greater than 2000"

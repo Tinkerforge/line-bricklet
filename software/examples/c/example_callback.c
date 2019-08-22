@@ -33,7 +33,7 @@ int main(void) {
 	// Register reflectivity callback to function cb_reflectivity
 	line_register_callback(&l,
 	                       LINE_CALLBACK_REFLECTIVITY,
-	                       (void *)cb_reflectivity,
+	                       (void (*)(void))cb_reflectivity,
 	                       NULL);
 
 	// Set period for reflectivity callback to 1s (1000ms)
