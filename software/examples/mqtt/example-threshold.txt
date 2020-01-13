@@ -3,10 +3,10 @@
 setup:
 	# Get threshold callbacks with a debounce time of 1 second (1000ms)
 	publish '{"debounce": 1000}' to tinkerforge/request/line_bricklet/XYZ/set_debounce_period
-	
+
 	# Handle incoming reflectivity reached callbacks
 	subscribe to tinkerforge/callback/line_bricklet/XYZ/reflectivity_reached
 	publish '{"register": true}' to tinkerforge/register/line_bricklet/XYZ/reflectivity_reached # Register reflectivity_reached callback
-	
+
 	# Configure threshold for reflectivity "greater than 2000"
 	publish '{"option": "greater", "min": 2000, "max": 0}' to tinkerforge/request/line_bricklet/XYZ/set_reflectivity_callback_threshold
