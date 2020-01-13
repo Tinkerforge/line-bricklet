@@ -28,5 +28,5 @@ if __name__ == "__main__":
     # Configure threshold for reflectivity "greater than 2000"
     l.set_reflectivity_callback_threshold(">", 2000, 0)
 
-    raw_input("Press key to exit\n") # Use input() in Python 3
+    input("Press key to exit\n") # Use raw_input() in Python 2
     ipcon.disconnect()
