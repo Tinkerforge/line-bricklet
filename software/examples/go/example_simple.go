@@ -20,7 +20,7 @@ func main() {
 
 	// Get current reflectivity.
 	reflectivity, _ := l.GetReflectivity()
-	fmt.Printf("Reflectivity: \n", reflectivity)
+	fmt.Printf("Reflectivity: %d\n", reflectivity)
 
 	fmt.Print("Press enter to exit.")
 	fmt.Scanln()
